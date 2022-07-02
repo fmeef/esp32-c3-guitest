@@ -1,5 +1,5 @@
 [package]
-name = "fmef"
+name = "esp32-c3-guitest"
 version = "0.1.0"
 authors = ["Alex Ballmer <gnu3ra@riseup.net>"]
 edition = "2018"
