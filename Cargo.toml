@@ -1,0 +1,26 @@
+[package]
+name = "fmef"
+version = "0.1.0"
+authors = ["Alex Ballmer <gnu3ra@riseup.net>"]
+edition = "2018"
+resolver = "2"
+
+[profile.release]
+opt-level = "s"
+
+[profile.dev]
+debug = true # Symbols are nice and they don't increase the size on Flash
+opt-level = "z"
+
+[features]
+pio = ["esp-idf-sys/pio"]
+
+[dependencies]
+esp-idf-sys = { version = "0.31.6", features = ["binstart", "native"] }
+esp-idf-hal = "0.38.0"
+lvgl = { path = "./lvgl-rs/lvgl" }
+lvgl-sys = { path = "./lvgl-rs/lvgl-sys" }
+[build-dependencies]
+embuild = "0.29"
+anyhow = "1"
+
