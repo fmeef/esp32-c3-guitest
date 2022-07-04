@@ -3,8 +3,8 @@
 #target = "xtensa-esp32-espidf"
 #target = "xtensa-esp32s2-espidf"
 #target = "xtensa-esp32s3-espidf"
-#target = "riscv32imc-esp-espidf"
-target = "aarch64-apple-darwin"
+target = "riscv32imc-esp-espidf"
+#target = "aarch64-apple-darwin"
 
 [target.xtensa-esp32-espidf]
 linker = "ldproxy"
