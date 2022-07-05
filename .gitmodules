@@ -1,3 +1,6 @@
 [submodule "lvgl-rs"]
 	path = lvgl-rs
 	url = https://github.com/rafaelcaricio/lvgl-rs.git
+[submodule "epd-waveshare"]
+	path = epd-waveshare
+	url = git@github.com:gnu3ra/epd-waveshare.git
