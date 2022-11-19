@@ -11,22 +11,26 @@ opt-level = "s"
 [profile.dev]
 debug = true # Symbols are nice and they don't increase the size on Flash
 opt-level = "z"
+lto = true
 
 [features]
 pio = ["esp-idf-sys/pio"]
+[dependencies.slint]
+version = "0.3.1"
+default-features = false
+features = ["compat-0-3-0", "unsafe-single-threaded", "libm"]
 
 [dependencies]
-esp-idf-sys = { version = "0.31.6", features = ["binstart", "native"] }
-esp-idf-hal = "0.38.0"
-lvgl = { path = "./lvgl-rs/lvgl" }
-lvgl-sys = { path = "./lvgl-rs/lvgl-sys" }
+esp-idf-sys = { version = "0.31.11", features = ["binstart", "native"] }
+esp-idf-hal = "0.38.1"
 epd-waveshare = { path = "./epd-waveshare", features = ["graphics" ]}
 embedded-hal = { version = "0.2.7", features = [ "unproven" ] }
-anyhow = "1"
+anyhow = "1.0.66"
 embedded-graphics = "0.7.1"
-esp_idf_logger = "0.1"
-log = "0.4"
+esp_idf_logger = "0.1.1"
+log = "0.4.17"
 [build-dependencies]
-embuild = "0.29"
-anyhow = "1"
+embuild = "0.30.4"
+anyhow = "1.0.66"
+slint-build = "0.3.1"
 

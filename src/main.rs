@@ -5,8 +5,7 @@ use embedded_graphics::mono_font::iso_8859_14::FONT_8X13;
 use embedded_graphics::mono_font::iso_8859_3::FONT_7X13;
 use embedded_graphics::mono_font::MonoTextStyle;
 use embedded_graphics::pixelcolor::BinaryColor;
-use embedded_graphics::prelude::Point;
-use embedded_graphics::prelude::Primitive;
+use embedded_graphics::prelude::*;
 use embedded_graphics::primitives::Circle;
 use embedded_graphics::primitives::PrimitiveStyle;
 use embedded_graphics::primitives::Triangle;
@@ -23,14 +22,7 @@ use epd_waveshare::graphics::Display;
 use epd_waveshare::prelude::Color;
 use epd_waveshare::prelude::WaveshareDisplay;
 use esp_idf_hal::delay::FreeRtos;
-use esp_idf_hal::gpio::Gpio1;
-use esp_idf_hal::gpio::Gpio10;
-use esp_idf_hal::gpio::Gpio2;
-use esp_idf_hal::gpio::Gpio5;
-use esp_idf_hal::gpio::Gpio6;
-use esp_idf_hal::gpio::Gpio7;
-use esp_idf_hal::gpio::Input;
-use esp_idf_hal::gpio::Output;
+use esp_idf_hal::gpio::*;
 use esp_idf_hal::prelude::*;
 use esp_idf_hal::spi;
 
@@ -78,7 +70,7 @@ fn main() -> Result<()> {
     buf.set_rotation(epd_waveshare::graphics::DisplayRotation::Rotate90);
     let style = MonoTextStyle::new(&FONT_8X13_BOLD, BinaryColor::On);
     Text::new(
-        "Look up at a star\nits incredibly far\nbut further away altogether...",
+        "Look up at a star\nits incredibly far\nbut further away altogether...\nI make a many tired noise\nzzz",
         Point::new(0, 10),
         style,
     )
@@ -100,8 +92,7 @@ fn main() -> Result<()> {
     driver.clear_frame(&mut spi, &mut delay)?;
     driver.display_frame(&mut spi, &mut delay)?;
     driver.update_and_display_frame(&mut spi, buf.buffer(), &mut delay)?;
-    loop {
-        driver.display_frame(&mut spi, &mut delay)?;
-        delay.delay_ms(1 as u32); // avoid tripping watchdog
-    }
+    driver.sleep(&mut spi, &mut delay)?;
+
+    Ok(())
 }
